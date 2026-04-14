@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free professional web utilities. Clean text, format JSON, generate secure passwords, and learn best practices.">
+    <meta name="theme-color" content="#4f8cff">
+    <link rel="manifest" href="manifest.json">
+    <title>Tools for You | Professional Utilities</title>
+    
+    <script src="https://unpkg.com/lucide@0.263.1"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="pill-nav-container">
+        <nav class="pill-nav">
+            <a class="pill-logo" href="#home"><i data-lucide="zap" size="20"></i></a>
+            <ul class="pill-list">
+                <li><a class="pill is-active" id="p-home" href="#home">Home</a></li>
+                <li><a class="pill" id="p-about" href="#about">About</a></li>
+                <li><a class="pill" id="p-contact" href="#contact">Contact</a></li>
+                <li><a class="pill" id="p-privacy" href="#privacy">Privacy</a></li>
+                <li><a class="pill" id="p-terms" href="#terms">Terms</a></li>
+            </ul>
+        </nav>
+        <button class="theme-toggle" id="themeBtn" aria-label="Toggle Dark Mode">
+            <i data-lucide="moon"></i>
+        </button>
+        <button class="theme-toggle" id="installBtn" aria-label="Install App" title="Install App">
+            <i data-lucide="download-cloud"></i>
+        </button>
+    </div>
+
+    <div class="ad-slot ad-top">Revenue Slot: Top Leaderboard (728x90)</div>
+
+    <div class="top-controls" id="searchWrap">
+        <button class="mobile-toggle" id="mobileToggleBtn"><i data-lucide="menu"></i></button>
+        <div class="search-area">
+            <i data-lucide="search" class="search-icon" size="20"></i>
+            <input type="text" class="search-bar" id="toolSearch" placeholder="Search tools or articles...">
+        </div>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="wrapper">
+        <aside class="sidebar" id="toolSidebar">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;" class="mobile-only">
+                <h3 style="font-weight: 800; color: var(--text);">Menu</h3>
+                <i data-lucide="x" style="cursor: pointer; color: var(--text-light);" id="closeSidebarBtn"></i>
+            </div>
+            <div id="search-empty">No results found.</div>
+            
+            <div class="menu-category">
+                <div class="menu-title">✍️ Text Tools</div>
+                <div class="menu-item active" data-target="cleaner"><i data-lucide="wand-2" size="18"></i> <span class="m-text">Text Cleaner</span></div>
+                <div class="menu-item" data-target="findreplace"><i data-lucide="search-check" size="18"></i> <span class="m-text">Find & Replace</span></div>
+                <div class="menu-item" data-target="counter"><i data-lucide="hash" size="18"></i> <span class="m-text">Word Counter</span></div>
+                <div class="menu-item" data-target="converter"><i data-lucide="type" size="18"></i> <span class="m-text">Case Converter</span></div>
+                <div class="menu-item" data-target="duplicates"><i data-lucide="copy-minus" size="18"></i> <span class="m-text">Remove Dups</span></div>
+            </div>
+            <div class="menu-category">
+                <div class="menu-title">🔐 Utilities</div>
+                <div class="menu-item" data-target="password"><i data-lucide="key" size="18"></i> <span class="m-text">Password Gen</span></div>
+                <div class="menu-item" data-target="qrcode"><i data-lucide="qr-code" size="18"></i> <span class="m-text">QR Studio</span></div>
+                <div class="menu-item" data-target="random"><i data-lucide="shuffle" size="18"></i> <span class="m-text">Spin the Wheel</span></div>
+                <div class="menu-item" data-target="lorem"><i data-lucide="file-text" size="18"></i> <span class="m-text">Lorem Ipsum</span></div>
+            </div>
+            <div class="menu-category">
+                <div class="menu-title">💻 Developer</div>
+                <div class="menu-item" data-target="json"><i data-lucide="code-2" size="18"></i> <span class="m-text">JSON Format</span></div>
+                <div class="menu-item" data-target="url"><i data-lucide="link" size="18"></i> <span class="m-text">URL Encode</span></div>
+                <div class="menu-item" data-target="base64"><i data-lucide="binary" size="18"></i> <span class="m-text">Base64 Tools</span></div>
+                <div class="menu-item" data-target="color"><i data-lucide="palette" size="18"></i> <span class="m-text">Color Converter</span></div>
+                <div class="menu-item" data-target="uuid"><i data-lucide="fingerprint" size="18"></i> <span class="m-text">UUID Generator</span></div>
+            </div>
+            <div class="menu-category">
+                <div class="menu-title">📖 Knowledge Base</div>
+                <div class="menu-item" data-target="article-json"><i data-lucide="book-open" size="18"></i> <span class="m-text">What is JSON?</span></div>
+                <div class="menu-item" data-target="article-passwords"><i data-lucide="shield-check" size="18"></i> <span class="m-text">Password Security</span></div>
+            </div>
+        </aside>
+
+        <main>
+            <div id="view-home" class="page-content active">
+                <div class="card">
+                    <div class="tool-header">
+                        <div>
+                            <h1 id="toolTitle">Text Cleaner</h1>
+                            <p id="toolDesc">Remove extra spaces and normalize line breaks instantly.</p>
+                        </div>
+                        <button class="share-btn" id="shareBtn" aria-label="Share this tool"><i data-lucide="share-2" size="16"></i> Share</button>
+                    </div>
+
+                    <div id="ui-universal" style="display: block;">
+                        <div class="action-bar">
+                            <span style="font-size: 0.75rem; font-weight: 800; color: var(--text-light);">IMPORT: .txt, .pdf, .docx</span>
+                            <label class="file-upload-label">
+                                <i data-lucide="file-up" size="16"></i> Upload Document
+                                <input type="file" id="fileInput" hidden accept=".txt,.pdf,.docx">
+                            </label>
+                        </div>
+                        <div class="stats-row" id="liveStats">
+                            <div>Words: <b id="wCnt">0</b></div>
+                            <div>Chars: <b id="cCnt">0</b></div>
+                            <div>Reading: <b id="rTime">0</b>m</div>
+                        </div>
+                    </div>
+
+                    <div id="ui-findreplace" class="advanced-settings" style="display: none;">
+                        <div class="find-grid">
+                            <div style="display: flex; flex-direction: column; gap: 5px;"><span>Find Text</span><input type="text" id="findText" class="custom-input" placeholder="Search for..."></div>
+                            <div style="display: flex; flex-direction: column; gap: 5px;"><span>Replace With</span><input type="text" id="replaceText" class="custom-input" placeholder="Replacement..."></div>
+                        </div>
+                        <div class="setting-row" style="justify-content: flex-start; gap: 25px; margin-top: 5px;">
+                            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;"><input type="checkbox" id="matchCase"> Case Sensitive</label>
+                            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;"><input type="checkbox" id="matchWord"> Whole Word</label>
+                        </div>
+                    </div>
+
+                    <div id="ui-lorem" class="advanced-settings" style="display: none;">
+                        <div class="setting-row"><span>Amount: <b id="loremVal" style="color: var(--primary); font-size: 1.2rem;">3</b></span><input type="range" id="loremCount" min="1" max="50" value="3"></div>
+                        <div class="setting-row" style="justify-content: flex-start; gap: 25px; flex-wrap: wrap;">
+                            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;"><input type="radio" name="loremType" value="paras" checked> Paragraphs</label>
+                            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;"><input type="radio" name="loremType" value="words"> Words</label>
+                            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;"><input type="radio" name="loremType" value="sentences"> Sentences</label>
+                        </div>
+                    </div>
+
+                    <div id="ui-color" class="advanced-settings" style="display: none; align-items: center; justify-content: center;">
+                        <div class="color-preview-box" id="colorPreviewBox">
+                            <input type="color" id="colorPicker" value="#4f8cff" class="color-picker-input">
+                            <span style="color: white; font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); pointer-events: none;">CLICK TO PICK</span>
+                        </div>
+                        <div class="color-outputs">
+                            <div class="color-col"><span>HEX</span><div style="display:flex; gap:5px;"><input type="text" id="colorHex" class="custom-input" style="font-family: monospace;" readonly><button class="icon-btn" data-copy="colorHex"><i data-lucide="copy" size="16"></i></button></div></div>
+                            <div class="color-col"><span>RGB</span><div style="display:flex; gap:5px;"><input type="text" id="colorRgb" class="custom-input" style="font-family: monospace;" readonly><button class="icon-btn" data-copy="colorRgb"><i data-lucide="copy" size="16"></i></button></div></div>
+                            <div class="color-col"><span>HSL</span><div style="display:flex; gap:5px;"><input type="text" id="colorHsl" class="custom-input" style="font-family: monospace;" readonly><button class="icon-btn" data-copy="colorHsl"><i data-lucide="copy" size="16"></i></button></div></div>
+                        </div>
+                    </div>
+
+                    <div id="ui-password" style="display: none;">
+                        <div class="pass-display" id="passDisplay">P@ssw0rd123!</div>
+                        <div class="advanced-settings">
+                            <div class="setting-row"><span>Length: <b id="lenVal" style="color: var(--primary);">16</b></span><input type="range" id="passLen" min="8" max="50" value="16"></div>
+                            <div class="setting-row"><span>Numbers (0-9)</span><input type="checkbox" id="incNums" checked></div>
+                            <div class="setting-row"><span>Symbols (!@#$)</span><input type="checkbox" id="incSyms" checked></div>
+                        </div>
+                    </div>
+
+                    <div id="ui-uuid" style="display: none;">
+                        <div class="pass-display" id="uuidDisplay" style="font-size: 1.2rem; letter-spacing: 1px;">00000000-0000-0000-0000-000000000000</div>
+                        <div class="advanced-settings">
+                            <div class="setting-row"><span>Quantity: <b id="uuidCntVal" style="color: var(--primary);">1</b></span><input type="range" id="uuidCount" min="1" max="50" value="1"></div>
+                            <div class="setting-row"><span>Include Hyphens</span><input type="checkbox" id="uuidHyphens" checked></div>
+                            <div class="setting-row"><span>UPPERCASE</span><input type="checkbox" id="uuidUpper"></div>
+                        </div>
+                    </div>
+
+                    <div id="ui-qrcode" style="display: none;">
+                        <div class="qr-settings">
+                            <div class="setting-row" style="flex-direction: column; align-items: flex-start; gap: 8px;"><span>Foreground Color</span><input type="color" id="qrColor" value="#000000" style="width:100%; height:45px; border:none; border-radius:8px; cursor:pointer;"></div>
+                            <div class="setting-row" style="flex-direction: column; align-items: flex-start; gap: 8px;"><span>Background Color</span><input type="color" id="qrBg" value="#ffffff" style="width:100%; height:45px; border:none; border-radius:8px; cursor:pointer;"></div>
+                            <div class="setting-row" style="grid-column: 1 / -1; margin-top: 10px;"><span>Size: <b id="qrSizeVal" style="color: var(--primary);">250</b>px</span><input type="range" id="qrSize" min="150" max="500" value="250" style="width:100%"></div>
+                        </div>
+                    </div>
+
+                    <div id="ui-wheel" style="display: none;">
+                        <div class="wheel-wrapper">
+                            <div class="wheel-container">
+                                <div class="wheel-pointer"></div>
+                                <canvas id="wheelCanvas" width="300" height="300" class="wheel-canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <textarea id="mainInput" placeholder="Paste your text here..." spellcheck="false"></textarea>
+
+                    <div class="ad-slot ad-inline">Revenue Slot: Inline Ad</div>
+
+                    <div class="btn-row" id="btnRow"></div>
+
+                    <div class="result-area" id="resultArea">
+                        <div class="result-actions" id="resultActions">
+                            <button class="icon-btn" id="exportBtn" title="Download as .txt"><i data-lucide="download" size="18"></i></button>
+                            <button class="icon-btn" id="resCopyBtn" title="Copy to Clipboard"><i data-lucide="copy" size="18"></i></button>
+                        </div>
+                        <div class="result-box" id="resultBox"></div>
+                        <div id="htmlResultBox" style="display: none;"></div>
+                    </div>
+
+                    <article class="seo-article" id="seoArticle"></article>
+                </div>
+            </div>
+
+            <div id="view-article" class="page-content content-body"><div class="card" id="articleContainer"></div></div>
+
+            <div id="view-about" class="page-content content-body"><div class="card"><h1>About Us</h1><p>Welcome to Tools For You — a collection of simple, fast, and useful online tools designed to solve everyday problems.</p></div></div>
+            <div id="view-privacy" class="page-content content-body"><div class="card"><h1>Privacy Policy</h1><p>At Tools For You, your privacy is important to us. All tools on this website are designed to work directly in your browser. Any text or data you input is processed locally.</p></div></div>
+            <div id="view-terms" class="page-content content-body"><div class="card"><h1>Terms and Conditions</h1><p>All tools provided on this website are free to use. You agree not to misuse the website or use it for any unlawful activities.</p></div></div>
+            <div id="view-contact" class="page-content content-body"><div class="card"><h1>Contact Us</h1><p>Email: <a href="mailto:1toolsforyou@gmail.com" style="color: var(--primary); font-weight: 700;">1toolsforyou@gmail.com</a></p></div></div>
+        </main>
+    </div>
+
+    <div class="ad-slot ad-bottom">Revenue Slot: Bottom Banner</div>
+    <footer>
+        <div class="footer-nav">
+            <a href="#about">About Us</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms & Conditions</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        &copy; 2026 Tools for You &bull; Built for Performance & Privacy
+    </footer>
+    <div id="toast">Ready!</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
